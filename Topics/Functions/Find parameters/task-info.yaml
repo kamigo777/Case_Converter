@@ -1,0 +1,19 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: sum and return
+- text: sum and a
+- text: sum and b
+- text: a and b
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: main.js
+  visible: true
+  text: |+
+    // You can experiment here, it won’t be checked
+
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/8391#comment
+status: Unchecked
+record: -1

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div class="title">Case Converter</div>
+<textarea name="text" id="" cols="30" rows="10"></textarea>
+<button id="upper-case">upper-case</button>
+<button id="lower-case">lower-case</button>
+<button id="proper-case">proper-case</button>
+<button id="sentence-case">sentence-case</button>
+<button id="save-text-file">save-text-file</button>
+
+<script>
+    document.getElementById("upper-case")
+        .addEventListener("click", function(){
+            let element = document.querySelector("textarea");
+            element.value = element.value.toUpperCase();
+        } );
+
+    document.getElementById("lower-case")
+        .addEventListener("click", function(){
+        let element = document.querySelector("textarea");
+        element.value = element.value.toLowerCase();
+    });
+
+    document.getElementById("proper-case").addEventListener("click", function() {
+        let words = document.querySelector('textarea').value.toLowerCase().split(' ');
+
+        for (let index = 0; index < words.length; index++) {
+            let word = words[index];
+            word = word[0].toUpperCase() + word.slice(1);
+            words[index] = word;
+        }
+        document.querySelector('textarea').value = words.join(" ");
+    });
+
+    document.getElementById("sentence-case").addEventListener("click", function() {
+        let sentences = document.querySelector('textarea').value.toLowerCase().split('. ');
+
+        for (let index = 0; index < sentences.length; index++) {
+            let sentence = sentences[index];
+            sentence = sentence[0].toUpperCase() + sentence.slice(1);
+            sentences[index] = sentence;
+        }
+        document.querySelector('textarea').value = sentences.join(". ");
+    });
+
+    function download(filename, text) {
+        let element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+
+    // Start file download.
+    document.getElementById("save-text-file").addEventListener("click", function(){
+        // Generate download of hello.txt file with some content
+        let text = document.querySelector("textarea").value;
+        let filename = "text.txt";
+
+        download(filename, text);
+    }, false);
+
+</script>
+</body>
+</html>
